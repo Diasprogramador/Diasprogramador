@@ -19,7 +19,9 @@ Advanced Front-end Development
 
 Version control best practices (Git/GitHub)
 
-Building more responsive and scalable web applications
+Building more responsive and scalable web applications.
+
+
 
 📫 How to reach me:
 
