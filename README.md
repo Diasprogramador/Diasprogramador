@@ -20,3 +20,9 @@ Advanced Front-end Development
 Version control best practices (Git/GitHub)
 
 Building more responsive and scalable web applications
+
+📫 How to reach me:
+
+Email: caiogoncalves629@gmail.com
+
+linkedln: https://www.linkedin.com/in/caio-d-992a763b3/
