@@ -34,7 +34,7 @@ I focus on writing clean, maintainable code and creating intuitive digital exper
 <img align="left" alt="Node.js" title="Node.js" width="35px" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nodejs/nodejs-original.svg"/>
 <img align="left" alt="Express" title="Express.js" width="35px" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/express/express-original.svg"/>
 <img align="left" alt="Python" title="Python" width="35px" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg"/>
-<img align="left" alt="GraphQL" title="GraphQL" width="35px" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/graphql/graphql-original.svg"/>
+<img align="left" alt="GraphQL" title="GraphQL" width="35px" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/graphql/graphql-plain.svg"/>
 
 <br/><br/>
 
