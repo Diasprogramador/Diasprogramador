@@ -1,100 +1,134 @@
-### 👋 Hi, I'm Caio Gonçalves
+# Caio Gonçalves Fernandes Dias
 
-```javascript
-const caio = {
-  role: "Fullstack Developer",
-  age: 17,
-  location: "Brazil 🇧🇷",
-  currentFocus: "Building scalable web applications",
-  funFact: "I turn coffee into code ☕"
-};
-```
+**Desenvolvedor de software — back-end e front-end**
+Conselheiro Lafaiete, MG · Concluindo Desenvolvimento de Sistemas
 
-I am a motivated **Fullstack Developer** with 3+ years of experience building modern, responsive, and user-centered web applications. Currently completing my final year of high school, I specialize in creating end-to-end solutions from database design to pixel-perfect interfaces.
-
-I focus on writing clean, maintainable code and creating intuitive digital experiences. I'm passionate about learning new technologies and best practices in software development.
+Construo sistemas onde correção importa mais que velocidade de entrega:
+idempotência, consistência entre serviços, tolerância a falha. Meus projetos
+documentam a decisão junto com a alternativa que foi descartada — porque numa
+conversa técnica a alternativa descartada costuma valer mais que a escolhida.
 
 ---
 
-### 🛠️ Languages & Technologies
+## Projetos
 
-**Frontend:**
-<img align="left" alt="HTML5" title="HTML5" width="35px" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg"/>
-<img align="left" alt="CSS3" title="CSS3" width="35px" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-original.svg"/>
-<img align="left" alt="JavaScript" title="JavaScript" width="35px" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg"/>
-<img align="left" alt="TypeScript" title="TypeScript" width="35px" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/typescript/typescript-original.svg"/>
-<img align="left" alt="React" title="React" width="35px" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg"/>
-<img align="left" alt="Next.js" title="Next.js" width="35px" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nextjs/nextjs-original.svg"/>
-<img align="left" alt="Vue.js" title="Vue.js" width="35px" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vuejs/vuejs-original.svg"/>
-<img align="left" alt="Tailwind" title="Tailwind CSS" width="35px" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tailwindcss/tailwindcss-original.svg"/>
+### PayFlow — Gateway de pagamentos assíncrono
 
-<br/><br/>
+Gateway que separa a aceitação da cobrança da liquidação junto ao adquirente,
+para que uma indisponibilidade externa não vire erro para o lojista. Cinco
+módulos Maven, dois executáveis independentes, **129 testes**.
 
-**Backend:**
-<img align="left" alt="Node.js" title="Node.js" width="35px" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nodejs/nodejs-original.svg"/>
-<img align="left" alt="Express" title="Express.js" width="35px" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/express/express-original.svg"/>
-<img align="left" alt="Python" title="Python" width="35px" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg"/>
-<img align="left" alt="GraphQL" title="GraphQL" width="35px" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/graphql/graphql-plain.svg"/>
+- **Idempotência em duas camadas** — Redis com script Lua atômico para o caso
+  comum, e restrição de unicidade no PostgreSQL como garantia final. Há um teste
+  que apaga o cache inteiro no meio do fluxo para provar que a proteção
+  sobrevive.
+- **Transactional outbox** — o evento é gravado na mesma transação de banco que
+  a mudança de estado, eliminando a dupla escrita entre banco e broker. O relay
+  usa `FOR UPDATE SKIP LOCKED` para escalar horizontalmente.
+- **Backoff exponencial com jitter** — um tópico Kafka por nível de retentativa,
+  com Dead Letter Queue para o que exige conciliação. Sem jitter, mil cobranças
+  que falham juntas retentam juntas e derrubam o adquirente que tenta se
+  recuperar.
+- **Assinatura HMAC-SHA256** com comparação em tempo constante, anti-replay por
+  nonce e rate limit distribuído em token bucket.
+- **Arquitetura verificada pelo build** — seis regras de ArchUnit falham a
+  compilação se o domínio importar Spring, se um controller acessar o banco
+  direto, ou se o número do cartão vazar do pacote que o tokeniza.
 
-<br/><br/>
+`Java 21` `Spring Boot 4.1` `Apache Kafka` `PostgreSQL 17` `Redis` `Keycloak` `Docker` `Next.js 16`
 
-**Databases:**
-<img align="left" alt="PostgreSQL" title="PostgreSQL" width="35px" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/postgresql/postgresql-original.svg"/>
-<img align="left" alt="MongoDB" title="MongoDB" width="35px" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mongodb/mongodb-original.svg"/>
-<img align="left" alt="Redis" title="Redis" width="35px" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/redis/redis-original.svg"/>
-<img align="left" alt="Firebase" title="Firebase" width="35px" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/firebase/firebase-plain.svg"/>
+### Grão da Serra — Loja integrando o PayFlow
 
-<br/><br/>
+Loja de café que consome o gateway como um integrador externo de verdade.
+Construí-la expôs duas lacunas no PayFlow — não havia provisionamento de lojista
+nem webhook — e as duas foram implementadas por causa disso.
 
-**DevOps & Tools:**
-<img align="left" alt="Git" title="Git" width="35px" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original.svg"/>
-<img align="left" alt="Docker" title="Docker" width="35px" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/docker/docker-original.svg"/>
-<img align="left" alt="AWS" title="AWS" width="35px" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/amazonwebservices/amazonwebservices-plain-wordmark.svg"/>
-<img align="left" alt="Linux" title="Linux" width="35px" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/linux/linux-original.svg"/>
-<img align="left" alt="Jest" title="Jest" width="35px" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/jest/jest-plain.svg"/>
+O contrato de assinatura é testado **entre as duas linguagens**: vetores gerados
+pela implementação TypeScript ficam travados num teste Java. Isso encontrou um
+bug real que nenhum teste de um lado só teria pego — o cliente usava a string
+base64 do segredo como chave do HMAC, enquanto o gateway usava os bytes
+decodificados.
 
-<br/><br/>
+`Next.js 16` `React 19` `TypeScript` `HMAC` `Webhooks`
+
+### [Maquete Industrial](https://github.com/sandersonElias/Maquete_Industrial) — Sistema de monitoramento IoT
+
+Projeto em equipe de quatro pessoas, com 249 commits. **Sou o maior
+contribuidor, com 115 deles.** Quatro aplicações integradas e um caminhão
+basculante impresso em 3D controlado por Bluetooth.
+
+- **Backend Node** — API REST e WebSocket com dez módulos de rota, autenticação
+  JWT, rate limiting, validação com Joi, logging estruturado e exportação de
+  relatórios em PDF, CSV e Excel. 52 casos de teste.
+- **App Android nativo em Kotlin** — controle por Bluetooth RFCOMM com joystick
+  de oito direções, protocolo de comandos próprio e gravação de movimentos para
+  modo autônomo.
+- **Modelagem 3D procedural em Python** — geração da maquete inteira via `bpy`
+  no Blender: extração, beneficiamento, ferrovia, porto, malha rodoviária e
+  vegetação, versionada como código em vez de arquivo binário.
+- **Visualização 3D no navegador** com Three.js e React Three Fiber.
+
+`Node.js` `Express` `Socket.IO` `PostgreSQL` `Redis` `Kotlin` `Python` `Three.js` `React Native`
+
+### Performance — Área do aluno
+
+Aplicação de academia com autenticação, frequência, ficha de treino e
+indicações. **92 casos de teste** e nove migrações versionadas, incluindo
+políticas de **Row Level Security**, concessão de privilégios por papel e uma
+migração dedicada a endurecimento — o isolamento entre alunos é imposto pelo
+banco, não por um `if` na aplicação.
+
+[Ver funcionando](https://academia-performance-opal.vercel.app) ·
+`React 19` `TypeScript` `Supabase` `PostgreSQL` `RLS`
+
+### [Flavoro](https://github.com/Diasprogramador/flavoro-delivery) — Aplicativo de delivery
+
+Catálogo de 30 restaurantes e 450 pratos em 13 cozinhas, doze telas navegáveis e
+cupons aplicados no checkout. Sistema de design em CSS puro com tokens, sem
+framework de componentes.
+
+[Ver funcionando](https://flavoro-delivery-three.vercel.app) ·
+`React 19` `TypeScript` `Vite`
+
+### [Brothers Tech](https://github.com/Diasprogramador/Brothers_Tech) — Site de agência
+
+Animação de carregamento, cursor customizado, rolagem suave e transições
+coreografadas entre seções, respeitando `prefers-reduced-motion`.
+
+`React` `TypeScript` `GSAP` `Framer Motion` `Lenis`
 
 ---
 
-### 📊 GitHub Stats
+## Stack
 
-![Caio's GitHub stats](https://github-readme-stats.vercel.app/api?username=Diasprogramador&show_icons=true&theme=radical&hide_border=true)
+Listada por onde eu realmente usei, não por onde já ouvi falar.
 
-![Top Languages](https://github-readme-stats.vercel.app/api/top-langs/?username=Diasprogramador&layout=compact&theme=radical&hide_border=true)
-
----
-
-### 🚀 Featured Projects
-
-| Project | Description | Tech Stack |
-|---------|-------------|------------|
-| **E-commerce Fullstack** | Complete e-commerce with payments, admin panel | Next.js, Node.js, PostgreSQL, Stripe |
-| **Real-time Chat** | WebSocket chat with private rooms | Socket.io, Express, React, MongoDB |
-| **RESTful API** | Documented API with JWT auth and tests | Node.js, Express, Docker, Jest |
-| **Portfolio** | This portfolio with 3D animations | HTML5, CSS3, Three.js |
-
----
-
-### 📚 Currently Learning
-
-- 🏗️ **System Design** - Scalable architecture patterns
-- ☁️ **Cloud Services** - AWS and serverless deployments
-- 🧪 **Testing** - Advanced testing strategies
-- 🔐 **Security** - Best practices for web applications
+| Área | Tecnologias | Onde |
+|---|---|---|
+| **Back-end** | Java 21, Spring Boot 4, Spring Security, JPA/Hibernate, Flyway | PayFlow |
+| | Node.js, Express, Socket.IO, JWT, Joi, Winston | Maquete Industrial |
+| **Dados** | PostgreSQL, indexação, RLS, `SKIP LOCKED`, Supabase | PayFlow, Performance |
+| | Redis com scripts Lua, Apache Kafka | PayFlow, Maquete |
+| **Front-end** | TypeScript, React 19, Next.js 16, Vite, Tailwind CSS | todos |
+| | GSAP, Framer Motion, Lenis, Three.js, React Three Fiber | Brothers Tech, Maquete |
+| **Mobile** | Kotlin, Android nativo, Bluetooth RFCOMM, React Native | Maquete Industrial |
+| **Python** | Blender `bpy` para 3D procedural, geração de `.docx` | Maquete, automações |
+| **Testes** | JUnit 5, AssertJ, Testcontainers, ArchUnit, Jest | PayFlow, Performance, Maquete |
+| **Infra** | Docker, Docker Compose, Keycloak/OIDC, Git, Vercel | PayFlow, deploys |
 
 ---
 
-### 📫 How to reach me
+## Como eu trabalho
 
-[![Email](https://img.shields.io/badge/Email-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:caiogoncalves629@gmail.com)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://linkedin.com/in/caiodias123)
-[![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Diasprogramador)
-[![Discord](https://img.shields.io/badge/Discord-7289DA?style=for-the-badge&logo=discord&logoColor=white)](https://discord.com/users/caiodevszin)
-[![WhatsApp](https://img.shields.io/badge/WhatsApp-25D366?style=for-the-badge&logo=whatsapp&logoColor=white)](https://wa.me/5531972037820)
+- Documento a decisão junto com a alternativa descartada.
+- Teste é parte do projeto, não etapa posterior — 221 casos só nos dois projetos
+  que fiz sozinho.
+- Prefiro falhar alto e cedo a degradar em silêncio.
+- Comentário explica *por quê*, não *o quê* — o código já diz o que faz.
 
 ---
 
-### 💡 Random Dev Quote
+## Contato
 
-![Dev Quote](https://quotes-github-readme.vercel.app/api?type=horizontal&theme=radical)
+**caiogoncalvesfdias@gmail.com** · Conselheiro Lafaiete, MG
+Português nativo · Inglês para leitura técnica e documentação
