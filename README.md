@@ -12,7 +12,7 @@ conversa técnica a alternativa descartada costuma valer mais que a escolhida.
 
 ## Projetos
 
-### PayFlow — Gateway de pagamentos assíncrono
+### [PayFlow](https://github.com/Diasprogramador/PayFlow) — Gateway de pagamentos assíncrono
 
 Gateway que separa a aceitação da cobrança da liquidação junto ao adquirente,
 para que uma indisponibilidade externa não vire erro para o lojista. Cinco
@@ -37,7 +37,7 @@ módulos Maven, dois executáveis independentes, **129 testes**.
 
 `Java 21` `Spring Boot 4.1` `Apache Kafka` `PostgreSQL 17` `Redis` `Keycloak` `Docker` `Next.js 16`
 
-### Grão da Serra — Loja integrando o PayFlow
+### [Grão da Serra](https://github.com/Diasprogramador/GraoDaSerra) — Loja integrando o PayFlow
 
 Loja de café que consome o gateway como um integrador externo de verdade.
 Construí-la expôs duas lacunas no PayFlow — não havia provisionamento de lojista
@@ -88,7 +88,7 @@ basculante impresso em 3D controlado por Bluetooth.
 
 `Node.js` `Express` `Socket.IO` `PostgreSQL` `Redis` `Kotlin` `Python` `Three.js` `React Native`
 
-### Performance — Área do aluno
+### Performance — Área do aluno *(repositório privado)*
 
 Aplicação de academia com autenticação, frequência, ficha de treino e
 indicações. **92 casos de teste** e nove migrações versionadas, incluindo
