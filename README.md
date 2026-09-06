@@ -51,6 +51,24 @@ decodificados.
 
 `Next.js 16` `React 19` `TypeScript` `HMAC` `Webhooks`
 
+### AR Menu — Cardápio digital em realidade aumentada
+
+Plataforma SaaS multi-tenant em que o cliente do restaurante escaneia um QR
+Code, escolhe um prato e o vê sobre a própria mesa **em escala aproximada 1:1**,
+pela câmera do celular e sem instalar aplicativo.
+
+A realidade aumentada é implementada de verdade, não simulada: sessão WebXR
+`immersive-ar` com detecção de superfície por `hit-test`, e a escala derivada
+das dimensões físicas que o restaurante cadastra — é isso que separa "o prato
+aparece na tela" de "o prato tem o tamanho que vai chegar à mesa".
+
+O caminho imersivo não existe em todo aparelho, então a degradação é em cascata:
+WebXR onde há suporte, AR Quick Look no iOS, e visualizador 3D interativo como
+último nível. Cada tabela com dono tem Row Level Security — num SaaS
+multi-tenant, o isolamento entre restaurantes não pode depender do front-end.
+
+`React 19` `TypeScript` `three.js` `WebXR` `Supabase` `Tailwind v4` `Zustand` `Vitest`
+
 ### [Maquete Industrial](https://github.com/sandersonElias/Maquete_Industrial) — Sistema de monitoramento IoT
 
 Projeto em equipe de quatro pessoas, com 249 commits. **Sou o maior
@@ -95,7 +113,24 @@ framework de componentes.
 Animação de carregamento, cursor customizado, rolagem suave e transições
 coreografadas entre seções, respeitando `prefers-reduced-motion`.
 
+[Ver funcionando](https://brothers-tech.vercel.app) ·
 `React` `TypeScript` `GSAP` `Framer Motion` `Lenis`
+
+### Sites para clientes reais
+
+Trabalhos de menor escopo técnico, mas com um requisito que os projetos pessoais
+não têm: gente de fora precisa entender a página em cinco segundos e conseguir
+falar com o negócio.
+
+| Site | Negócio | O que sustenta a página |
+|---|---|---|
+| [Josie Serviços Automotivos](https://lava-jato-josie.vercel.app) | Centro automotivo em atividade desde 1986 | Prova social de quase quatro décadas, background 3D em Three.js, agendamento por WhatsApp |
+| [Fina Estampa](https://fina-estampa-lafaiete.vercel.app) | Loja de moda familiar | Avaliações reais do Google como argumento, rota e telefone a um toque |
+| [StopFire](https://stopfire.vercel.app) | Recarga e manutenção de extintores | Ilustração do produto construída só em CSS, conversão em um passo |
+| [Space Car](https://space-car-centro-automotivo.vercel.app) | Centro automotivo | Vende o problema antes do serviço: acompanhar o carro sem telefonar |
+| [Sinuca](https://sinuca2-psi.vercel.app) | Guia das regras do jogo | Cena WebGL rodando atrás do conteúdo sem comprometer a legibilidade |
+
+`HTML5` `CSS3` `JavaScript` `Three.js` `WebGL`
 
 ---
 
